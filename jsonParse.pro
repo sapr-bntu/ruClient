@@ -14,12 +14,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
         title.cpp \
         qxtjson.cpp \
-    filedownloader.cpp
+    filedownloader.cpp \
+        md5.cpp
 
 HEADERS  += mainwindow.h \
             title.h \
             qxtjson.h \
-    filedownloader.h
+    filedownloader.h \
+            md5.h
 
 FORMS    += mainwindow.ui
 
