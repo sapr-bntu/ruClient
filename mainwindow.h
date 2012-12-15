@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 public slots:
     void onResult(QNetworkReply*);
     void onFileResult(QNetworkReply*);
+    void onLoginResult(QNetworkReply*);
 public:
     explicit MainWindow(QWidget *parent = 0);
     QNetworkAccessManager networkManager;

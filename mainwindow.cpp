@@ -10,6 +10,7 @@
 #include "QtAlgorithms"
 #include "QGraphicsScene"
 #include "QMessageBox"
+#include "QDateTime"
 #include "QFileDialog"
 #include "QCryptographicHash"
 #include "md5.h"
@@ -49,7 +50,18 @@ void MainWindow::login(QString login, QString pass)
     url.setUrl("http://api.myshows.ru/profile/login?login="+login+"&password="+hash);
     request.setUrl(url);
     reply = networkManager.get(request);
-    qDebug()<<reply->rawHeaderList();
+    if (firstPush)
+    {
+        connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onLoginResult(QNetworkReply*)));
+    }
+    firstPush=false;
+}
+
+void MainWindow::onLoginResult(QNetworkReply *reply)
+{
+    QByteArray bytes = reply->readAll();
+    int v = (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute)).toInt();
+    qDebug()<<v;
 }
 
 void MainWindow::GetSerialsByName()
